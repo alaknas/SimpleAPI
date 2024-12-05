@@ -1,15 +1,8 @@
-
 from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
 from typing import List
+from Models.Task import Task
 
 app = FastAPI()
-
-class Task(BaseModel):
-    id: int
-    title: str
-    description: str
-    completed: bool
 
 tasks = []
 
@@ -47,3 +40,15 @@ def delete_task(id: int):
             tasks.remove(task)
             return {"detail": "Task deleted"}
     raise HTTPException(status_code=404, detail="Task not found")
+
+@app.get("/Task/summary")
+def get_summary():
+    task_count = len(tasks)
+    completed_count = len([task for task in tasks if task.completed])
+    summary = (task_count, completed_count, task_count - completed_count)
+    return {"summary": summary}
+
+@app.get("/Task/pending")
+def get_pending_tasks():
+    pending_tasks = [task for task in tasks if not task.completed]
+    return pending_tasks
