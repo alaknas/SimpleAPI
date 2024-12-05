@@ -23,6 +23,25 @@ namespace TaskManagerAPI.Controllers
             return Ok(tasks);
         }
 
+        [HttpGet("summary")]
+        public IActionResult GetSummary()
+        {
+            var taskCount = tasks.Count;
+            var completedCount = tasks.Count(t => t.Completed);
+            var summary = (TotalTasks: taskCount, CompletedTasks: completedCount, PendingTasks: taskCount - completedCount);
+            return Ok(summary);
+        }
+
+        [HttpGet("pending")]
+        public IActionResult GetPendingTasks()
+        {
+            var pendingTasks = tasks
+                .Where(t => !t.Completed)
+                .Select(t => new { t.Id, t.Title, t.Description })
+                .ToList();
+            return Ok(pendingTasks);
+        }
+
         [HttpGet("{id}")]
         public IActionResult GetTaskById(int id)
         {
@@ -49,25 +68,6 @@ namespace TaskManagerAPI.Controllers
             if (task == null) return NotFound();
             tasks.Remove(task);
             return NoContent();
-        }
-
-        [HttpGet("summary")]
-        public IActionResult GetSummary()
-        {
-            var taskCount = tasks.Count;
-            var completedCount = tasks.Count(t => t.Completed);
-            var summary = (TotalTasks: taskCount, CompletedTasks: completedCount, PendingTasks: taskCount - completedCount);
-            return Ok(summary);
-        }
-
-        [HttpGet("pending")]
-        public IActionResult GetPendingTasks()
-        {
-            var pendingTasks = tasks
-                .Where(t => !t.Completed)
-                .Select(t => new { t.Id, t.Title, t.Description })
-                .ToList();
-            return Ok(pendingTasks);
         }
     }
 }

@@ -2,9 +2,9 @@ from pydantic import BaseModel
 
 
 class Task(BaseModel):
-    Id: int
+    Id: int = None
     Title: str
     Description: str
-    Completed: bool
+    Completed: bool = False
 
 

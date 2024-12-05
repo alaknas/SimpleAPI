@@ -62,7 +62,6 @@
       <a href="#getting-started">Getting Started</a>
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
@@ -86,6 +85,7 @@ This is a sample project, showcasing how to setup a simple API handler in both C
 ### Built With
 
 * .NET C# (Using ASP.NET Core Web API)
+* Python (Using FastAPI)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -98,40 +98,32 @@ To get started, clone this repo.
 
 To start the C# version, open up the solution file in Visual Studio 2022 (Project is built using this IDE) and run it.
 
-To start the Python version, launch it with 
+To start the Python version, launch it by entering the pyTaskMAnager folder and running:
+
+```sh
+uvicorn main:app --reload
+```
+or, if your uvicorn is not in the path:
+```sh
+python -m uvicorn main:app --reload
+```
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
+The solution itself is within the repo, and created with Visual Studio 2022.
+The Python-version requires python3, pip, fastapi and uvicorn to be installed. 
+Install fastapi and uvicorn with pip:
+
+```sh
+pip install fastapi uvicorn
+```
+
+The C# version requires Visual Studio 2022.
+
 * npm
   ```sh
   npm install npm@latest -g
   ```
-
-### Installation
-
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/github_username/repo_name.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
-5. Change git remote url to avoid accidental pushes to base project
-   ```sh
-   git remote set-url origin github_username/repo_name
-   git remote -v # confirm the changes
-   ```
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 <!-- USAGE EXAMPLES -->
 ## Usage
@@ -139,15 +131,15 @@ This is an example of how to list things you need to use the software and how to
 Either use a web-browser and point it to your localhost endpoint (visible in the output of either C# or Python version of the server), 
 They are both able to handle:
 
-* HTTP GET example: https://localhost:7143/Task/ -> gets you a list of any available tasks in the memory database.
-* HTTP GET example: https://localhost:7143/Task/1 -> gets you task #1 (if available)
-* HTTP GET example: https://localhost:7143/Task/summary -> gets you a summary of all tasks (if available)
-* HTTP GET example: https://localhost:7143/Task/pending -> gets you a list of all tasks that are not completed (if available)
-* HTTP PUT example: https://localhost:7143/Task/1 -> with a json body of title & description -> will modify task #1
-* HTTP DELETE example: https://localhost:7143/Task/1 -> will remove task #1 if available
-* HTTP POST example: https://localhost:7143/Task/ -> with json body of title & description -> will create a new task in the memory DB
+* HTTP GET example: http://localhost:8000/Task/ -> gets you a list of any available tasks in the memory database.
+* HTTP GET example: http://localhost:8000/Task/1 -> gets you task #1 (if available)
+* HTTP GET example: http://localhost:8000/Task/summary -> gets you a summary of all tasks (if available)
+* HTTP GET example: http://localhost:8000/Task/pending -> gets you a list of all tasks that are not completed (if available)
+* HTTP PUT example: http://localhost:8000/Task/1 -> with a json body of title & description -> will modify task #1
+* HTTP DELETE example: http://localhost:8000/Task/1 -> will remove task #1 if available
+* HTTP POST example: http://localhost:8000/Task/ -> with json body of title & description -> will create a new task in the memory DB
 
-(You can use the accompanied postman file called `Showcase API.postman_collection.json` import it into postman to use it.)
+(You can use the accompanied postman file called `Showcase_API.postman_collection.json` import it into postman to use it.)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -156,10 +148,9 @@ They are both able to handle:
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
+- [X] C# Version
+- [X] Python Version
+- [X] README With basic instructions
 
 See the [open issues](https://github.com/alaknas/SimpleAPI/issues) for a full list of proposed features (and known issues).
 
