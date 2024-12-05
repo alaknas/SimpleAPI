@@ -120,11 +120,6 @@ pip install fastapi uvicorn
 
 The C# version requires Visual Studio 2022.
 
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
-
 <!-- USAGE EXAMPLES -->
 ## Usage
 
