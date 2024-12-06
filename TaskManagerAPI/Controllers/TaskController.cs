@@ -14,7 +14,7 @@ namespace TaskManagerAPI.Controllers
         {
             task.Id = tasks.Count + 1;
             tasks.Add(task);
-            return CreatedAtAction(nameof(GetTaskById), new { id = task.Id }, task);
+            return CreatedAtAction(nameof(GetTaskById), new { Id = task.Id }, task);
         }
 
         [HttpGet]
@@ -28,7 +28,12 @@ namespace TaskManagerAPI.Controllers
         {
             var taskCount = tasks.Count;
             var completedCount = tasks.Count(t => t.Completed);
-            var summary = (TotalTasks: taskCount, CompletedTasks: completedCount, PendingTasks: taskCount - completedCount);
+            var summary = new Dictionary<string, int>
+            {
+                { "TotalTasks", taskCount },
+                { "CompletedTasks", completedCount },
+                { "PendingTasks", taskCount - completedCount }
+            };
             return Ok(summary);
         }
 
