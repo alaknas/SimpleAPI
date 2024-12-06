@@ -1,6 +1,8 @@
 from fastapi import FastAPI, HTTPException
 from typing import List
 from Models.Task import Task
+from Models.TaskSummary import TaskSummary
+
 
 app = FastAPI()
 
@@ -20,8 +22,12 @@ def get_all_tasks():
 def get_summary():
     task_count = len(tasks)
     completed_count = len([task for task in tasks if task.Completed])
-    summary = (task_count, completed_count, task_count - completed_count)
-    return {"summary": summary}
+    summary = TaskSummary(
+        TotalTasks=task_count,
+        CompletedTasks=completed_count,
+        PendingTasks=task_count - completed_count
+    )    
+    return summary
 
 @app.get("/Task/pending")
 def get_pending_tasks():
