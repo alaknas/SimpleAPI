@@ -98,7 +98,7 @@ To get started, clone this repo.
 
 To start the C# version, open up the solution file in Visual Studio 2022 (Project is built using this IDE) and run it.
 
-To start the Python version, launch it by entering the pyTaskMAnager folder and running:
+To start the Python version, launch it by entering the pyTaskManager folder and running:
 
 ```sh
 uvicorn main:app --reload
