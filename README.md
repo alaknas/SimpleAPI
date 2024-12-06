@@ -118,7 +118,7 @@ Install fastapi and uvicorn with pip:
 pip install fastapi uvicorn
 ```
 
-The C# version requires Visual Studio 2022.
+The C# version requires Visual Studio 2022, and the .NET 9 libraries/runtimes.
 
 <!-- USAGE EXAMPLES -->
 ## Usage
